@@ -1,7 +1,10 @@
 var Bike = require('./../js/bike.js').bikeModule;
+// var findBikes = require("./../js/bike.js").findBikeModule;
+// var bikeArray = require("./../js/bike.js").bikeArrayModule;
 
-var displaySerial = function(location, serialData) {
-  $('.search-result').text("The serial number of the bike is " + serialData);
+function displayBike(bike) {
+    $('.search-result').append("<li>" + bike.title + "</li>");
+
 }
 
 $(document).ready(function(){
@@ -10,6 +13,6 @@ $(document).ready(function(){
       event.preventDefault();
     var location = $('#location').val();
     $('#location').val();
-    currentBike.findBikes(location, displaySerial);
+    currentBike.findBikes(location, displayBike);
   });
 });
