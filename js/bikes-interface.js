@@ -19,9 +19,8 @@ $(document).ready(function(){
     $("#find-bike").submit(function(event){
       event.preventDefault();
     var location = $('#location').val();
-    $('#location').val();
-    currentBike.findBikes(location, displayBike);
+    var manufacturer = $('#manufacturer').val();
+    currentBike.findBikes(manufacturer, location, displayBike);
   });
-
 
 });
