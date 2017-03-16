@@ -25,5 +25,4 @@ Bike.prototype.findCount = function(manufacturer, location, displayCount) {
   });
 };
 
-
 exports.bikeModule = Bike;

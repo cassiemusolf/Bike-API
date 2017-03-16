@@ -29,32 +29,41 @@ Bike.prototype.findCount = function(manufacturer, location, displayCount) {
   });
 };
 
-
 exports.bikeModule = Bike;
 
 },{"./../.env":1}],3:[function(require,module,exports){
+var apiKey = "./../.env";
 
-Map = function(){
-
-};
-
-Map.prototype.initMap = function(){
-  var seattle = {lat: 47.6062, lng: -122.3321};
-  var map = new google.maps.Map(document.getElementById('map'), {
+function Map(latitude, longitude){
+  this.lat = 0;
+  this.long = 0;
+  this.geocoder = new google.maps.Geocoder();
+  this.seattle = {lat: 47.6062, lng: -122.3321};
+  this.map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
-    center: seattle
+    center: this.seattle
   });
+}
 
-  var marker = new google.maps.Marker({
-    position: seattle,
-    map: map
+Map.prototype.getCoords = function(city){
+  var current = this;
+  current.geocoder.geocode({'address': city}, function(res, status){
+    if(status === "OK"){
+      current.lat = res[0].geometry.location.lat();
+      current.long = res[0].geometry.location.lng();
+      var marker = new google.maps.Marker({
+        position: {lat: current.lat, lng: current.long},
+        map: current.map
+      });
+      console.log(current.lat, current.long);
+    }
+    else{
+      console.log('broken as shit');
+    }
   });
 };
 
 exports.mapModule = Map;
-
-
-// https://maps.googleapis.com/maps/api/js?key=AIzaSyCDwXPeZvnRvw35icw_QK_dfE9GDYxXrxIcallback=initMap
 
 },{}],4:[function(require,module,exports){
 var Bike = require('./../js/bike.js').bikeModule;
@@ -89,18 +98,9 @@ $(document).ready(function(){
     currentBike.findBikes(page, manufacturer, location, displayBike);
     currentBike.findCount(manufacturer, location, displayCount);
     var map = new Map();
-    map.initMap();
+    map.getCoords(location);
   });
 
 });
-
-// var Map = require('./../js/map.js').mapModule;
-//
-// $(document).ready(function() {
-//   $('#click').click(function (){
-//     var map = new Map();
-//     map.initMap();
-//   });
-// });
 
 },{"./../.env":1,"./../js/bike.js":2,"./../js/map.js":3}]},{},[4]);

@@ -30,7 +30,7 @@ $(document).ready(function(){
     currentBike.findBikes(page, manufacturer, location, displayBike);
     currentBike.findCount(manufacturer, location, displayCount);
     var map = new Map();
-    // map.initMap();
+    map.getCoords(location);
   });
 
 });
