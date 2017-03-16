@@ -33,31 +33,23 @@ Bike.prototype.findCount = function(manufacturer, location, displayCount) {
 exports.bikeModule = Bike;
 
 },{"./../.env":1}],3:[function(require,module,exports){
-function Map() {
-  this.centerSpot = {lat: 47.6062, lng: -122.3321};
-}
 
-Map.prototype.initMap = function() {
-  var map = new google.maps.Map(document.getElementById("map"), {
-    center : {lat: 47.6062, lng: -122.3321},
-    zoom : 16,
-  });
+Map = function(){
+
 };
 
-Map.prototype.marker = function(latitude, longitude) {
-    var userLocation = {lat: latitude, lng: longitude};
-    var marker = new google.maps.Marker({
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        strokeColor: '#FF0000',
-        scale: 3,
-        strokeWeight: 8,
-        fillColor: '#FF0000'
-      },
-      position: userLocation,
-      map: this.map
-    });
-  };
+Map.prototype.initMap = function(){
+  var seattle = {lat: 47.6062, lng: -122.3321};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: seattle
+  });
+
+  var marker = new google.maps.Marker({
+    position: seattle,
+    map: map
+  });
+};
 
 exports.mapModule = Map;
 
@@ -67,6 +59,7 @@ exports.mapModule = Map;
 },{}],4:[function(require,module,exports){
 var Bike = require('./../js/bike.js').bikeModule;
 var apiKey = require('./../.env').apiKey;
+var Map = require('./../js/map.js').mapModule;
 
 function displayBike(bike) {
     $('.search-result').append("<li id='" + bike.id + "'>" + bike.title + "</li>");
@@ -95,21 +88,19 @@ $(document).ready(function(){
     var manufacturer = $('#manufacturer').val();
     currentBike.findBikes(page, manufacturer, location, displayBike);
     currentBike.findCount(manufacturer, location, displayCount);
+    var map = new Map();
+    map.initMap();
   });
 
 });
 
-var Map = require('./../js/map.js').mapModule;
-
-$(document).ready(function() {
-  var newMap = new Map();
-  $("#location-form").submit(function(event){
-    event.preventDefault();
-    var lat = $('#latitude').val();
-    var long = $('#longitude').val();
-    newMap.initMap();
-    // var result = newMap.marker(lat, long);
-  });
-});
+// var Map = require('./../js/map.js').mapModule;
+//
+// $(document).ready(function() {
+//   $('#click').click(function (){
+//     var map = new Map();
+//     map.initMap();
+//   });
+// });
 
 },{"./../.env":1,"./../js/bike.js":2,"./../js/map.js":3}]},{},[4]);

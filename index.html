@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="build/css/vendor.css">
   <link rel="stylesheet" href="build/css/styles.css">
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDwXPeZvnRvw35icw_QK_dfE9GDYxXrxI&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDwXPeZvnRvw35icw_QK_dfE9GDYxXrxI" async defer></script>
   <script src="build/js/vendor.min.js"></script>
   <script type="text/javascript" src="build/js/app.js"></script>
   <meta name="viewport" content="initial-scale=1.0">
@@ -24,7 +24,7 @@
       <input type="text" id="location">
       <label for="manufacturer">Enter the Manufacturer</label>
       <input type="text" id="manufacturer">
-      <button type="submit" name="button">Enter</button>
+      <button type="submit" name="button" id="click">Enter</button>
     </form>
     <div class="row">
       <div class="col-sm-3">
@@ -50,17 +50,14 @@
 
     <div class="row">
       <div class="map">
-        <form id="location-form">
-          <label for="latitude">Latitude</label>
-          <input type="number" id="latitude">
-          <label for="longitude">Longitude</label>
-          <input type="number" id="longitude">
-          <button type="submit" name="locationform">Submit</button>
+
+         <!-- <button type="button" id="click" class="btn btn-success">hey</button> -->
+       </div>
+
         <div id="map"></div>
 
         <!-- <script src="http://maps.google.com/maps/AIzaSyBrDK8Uk7akbLfCga-gAQvt_WNKsV6kZLc/js?"></script> -->
 
-      </div>
     </div>
 
   </div>

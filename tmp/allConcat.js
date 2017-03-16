@@ -1,5 +1,6 @@
 var Bike = require('./../js/bike.js').bikeModule;
 var apiKey = require('./../.env').apiKey;
+var Map = require('./../js/map.js').mapModule;
 
 function displayBike(bike) {
     $('.search-result').append("<li id='" + bike.id + "'>" + bike.title + "</li>");
@@ -28,19 +29,17 @@ $(document).ready(function(){
     var manufacturer = $('#manufacturer').val();
     currentBike.findBikes(page, manufacturer, location, displayBike);
     currentBike.findCount(manufacturer, location, displayCount);
+    var map = new Map();
+    // map.initMap();
   });
 
 });
 
-var Map = require('./../js/map.js').mapModule;
-
-$(document).ready(function() {
-  var newMap = new Map();
-  $("#location-form").submit(function(event){
-    event.preventDefault();
-    var lat = $('#latitude').val();
-    var long = $('#longitude').val();
-    newMap.initMap();
-    // var result = newMap.marker(lat, long);
-  });
-});
+// var Map = require('./../js/map.js').mapModule;
+//
+// $(document).ready(function() {
+//   $('#click').click(function (){
+//     var map = new Map();
+//     map.initMap();
+//   });
+// });
