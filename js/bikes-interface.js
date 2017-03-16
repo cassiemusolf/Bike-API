@@ -17,7 +17,7 @@ function displayBike(bike) {
 
 var displayCount = function(proximity) {
   $('.search-count').text(proximity + " bikes were stolen.");
-}
+};
 
 $(document).ready(function(){
     var currentBike = new Bike();

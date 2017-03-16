@@ -1,6 +1,6 @@
 {
-  "name": "alarm",
-  "description": "alarm clock app",
+  "name": "bike",
+  "description": "look up stolen bikes in your location",
   "main": "index.js",
   "license": "ISC",
   "homepage": "",

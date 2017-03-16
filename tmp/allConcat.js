@@ -17,7 +17,7 @@ function displayBike(bike) {
 
 var displayCount = function(proximity) {
   $('.search-count').text(proximity + " bikes were stolen.");
-}
+};
 
 $(document).ready(function(){
     var currentBike = new Bike();
@@ -30,4 +30,17 @@ $(document).ready(function(){
     currentBike.findCount(manufacturer, location, displayCount);
   });
 
+});
+
+var Map = require('./../js/map.js').mapModule;
+
+$(document).ready(function() {
+  var newMap = new Map();
+  $("#location-form").submit(function(event){
+    event.preventDefault();
+    var lat = $('#latitude').val();
+    var long = $('#longitude').val();
+    newMap.initMap();
+    // var result = newMap.marker(lat, long);
+  });
 });
