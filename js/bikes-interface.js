@@ -1,4 +1,5 @@
 var Bike = require('./../js/bike.js').bikeModule;
+var apiKey = require('./../.env').apiKey;
 
 function displayBike(bike) {
     $('.search-result').append("<li id='" + bike.id + "'>" + bike.title + "</li>");
@@ -14,13 +15,19 @@ function displayBike(bike) {
     });
 }
 
+var displayCount = function(proximity) {
+  $('.search-count').text(proximity + " bikes were stolen.");
+}
+
 $(document).ready(function(){
     var currentBike = new Bike();
     $("#find-bike").submit(function(event){
       event.preventDefault();
+    var page = $('#page').val();
     var location = $('#location').val();
     var manufacturer = $('#manufacturer').val();
-    currentBike.findBikes(manufacturer, location, displayBike);
+    currentBike.findBikes(page, manufacturer, location, displayBike);
+    currentBike.findCount(manufacturer, location, displayCount);
   });
 
 });
